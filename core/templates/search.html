@@ -1,0 +1,181 @@
+{% extends "base.html" %} 
+{% block title %}Search{% endblock %}
+{% block content %}
+
+<div class='container'>
+  <form method="get">
+    <!-- Bar for searching descriptions -->
+    <input type="text" name="description" placeholder="Search names and descriptions..." value="{{ request.GET.q }}">
+    <!-- Dropdown for filtering categories -->
+    <select name="category">
+      <option value="">All Categories</option>
+      {% for category in categories %}
+        <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+          {{ category.name }}
+        </option>
+      {% endfor %}
+    </select>
+    <!-- Bar for dynamic autocomplete tag search -->
+    <div id="tag-input-wrapper">
+      <input type="text" id="tag_search" placeholder="Type a tag..." autocomplete="off">
+      <ul id="autocomplete-list" class="autocomplete-list"></ul>
+      <div id="selected-tags"></div>
+    </div>
+
+    <!-- Hidden input to store selected tag values -->
+    <input type="hidden" name="tags" id="hidden_tags">
+
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+
+<!-- Dynamic autocomplete tag search -->
+<script>
+  // List of all available tag names, injected from Django as a JS array
+  const allTags = {{ tags|safe }};
+  let selectedTags = [];
+
+  // DOM elements
+  const input = document.getElementById('tag_search');
+  const autocompleteList = document.createElement('ul');
+  autocompleteList.classList.add('autocomplete-list');
+  input.parentNode.appendChild(autocompleteList);
+
+
+  const selectedTagContainer = document.getElementById('selected-tags');
+  const hiddenInput = document.getElementById('hidden_tags');
+
+
+  // Autocomplete search on input
+  input.addEventListener('input', renderAutocomplete);
+  // Also trigger autocomplete when field gains focus
+  input.addEventListener('focus', renderAutocomplete);
+
+  // Autocomplete typed tags
+  function renderAutocomplete() {
+    const query = input.value.toLowerCase();
+    autocompleteList.innerHTML = '';
+
+    // Position the autocomplete list just below the input field
+    const rect = input.getBoundingClientRect();
+    autocompleteList.style.top = `${rect.bottom + window.scrollY}px`;
+    autocompleteList.style.left = `${rect.left + window.scrollX}px`;
+    autocompleteList.style.width = `${rect.width}px`;
+
+    // Filter tag suggestions (ignore already selected)
+    const matches = allTags.filter(tag =>
+      (!query || tag.toLowerCase().startsWith(query)) && !selectedTags.includes(tag)
+    );
+
+    // Render matching suggestions
+    matches.forEach(match => {
+      const li = document.createElement('li');
+      li.textContent = match;
+      li.classList.add('autocomplete-item');
+
+      // When a suggestion is clicked, add it as a tag chip
+      li.addEventListener('click', () => {
+        addTag(match);
+        input.value = '';
+        autocompleteList.innerHTML = '';
+      });
+      autocompleteList.appendChild(li);
+    });
+  }
+
+  // Hide suggestions if user clicks outside the input or dropdown
+  document.addEventListener('click', (e) => {
+    if (!autocompleteList.contains(e.target) && e.target !== input) {
+      autocompleteList.innerHTML = '';
+    }
+  });
+
+  // Add tag to selected list
+  function addTag(tag) {
+    selectedTags.push(tag);
+    updateSelectedTags();
+    updateHiddenInput();
+  }
+
+  // Remove tag from selected list
+  function removeTag(tag) {
+    selectedTags = selectedTags.filter(t => t !== tag);
+    updateSelectedTags();
+    updateHiddenInput();
+  }
+
+  // Display tag chips with remove buttons
+  function updateSelectedTags() {
+    selectedTagContainer.innerHTML = '';
+    selectedTags.forEach(tag => {
+      const tagEl = document.createElement('span');
+      tagEl.classList.add('tag-chip');
+      tagEl.textContent = tag;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = 'x';
+      removeBtn.classList.add('tag-remove');
+      removeBtn.addEventListener('click', () => removeTag(tag));
+
+      tagEl.appendChild(removeBtn);
+      selectedTagContainer.appendChild(tagEl);
+    });
+  }
+
+  // Update hidden input with CSV string of selected tags
+  function updateHiddenInput() {
+    hiddenInput.value = selectedTags.join(',');
+  }
+</script>
+   
+
+<style>
+#selected-tags {
+  margin-top: 10px;
+}
+.tag-chip {
+  display: inline-block;
+  background: #e0e0e0;
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin: 2px;
+}
+.tag-chip .tag-remove {
+  background: none;
+  border: none;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.autocomplete-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  background: white;
+  z-index: 100;
+}
+.autocomplete-item {
+  padding: 5px;
+  cursor: pointer;
+}
+.autocomplete-item:hover {
+  background-color: #eee;
+}
+</style>
+
+<h1>Search Results</h1>
+<ul>
+  {% for product in products %}
+    <li>
+      <strong>{{ product.name }}</strong> - {{ product.description }}
+    </li>
+  {% empty %}
+    <li>No products found.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+

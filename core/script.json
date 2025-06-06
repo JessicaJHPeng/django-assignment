@@ -1,0 +1,122 @@
+[
+  {
+    "name": "VoltEdge 240V Cordless Drill",
+    "description": "A powerful cordless drill suitable for high-voltage tasks.",
+    "category": "Tools",
+    "tags": ["240-Volt", "Power Tool", "VoltEdge"]
+  },
+  {
+    "name": "HammerSpan Flat Head Screws (100ct)",
+    "description": "Durable steel screws with flat heads for precision carpentry.",
+    "category": "Connectors",
+    "tags": ["Flat Head", "Steel", "HammerSpan"]
+  },
+  {
+    "name": "SafeCore High-Visibility Safety Vest",
+    "description": "OSHA-compliant vest designed for maximum visibility.",
+    "category": "Equipment",
+    "tags": ["High-Visibilty", "OSHA-Compliant", "SafeCore"]
+  },
+  {
+    "name": "PlyTek Premium 10x12 Plywood Sheet",
+    "description": "Water-resistant plywood for durable indoor/outdoor use.",
+    "category": "Materials",
+    "tags": ["Wood", "PlyTek"]
+  },
+  {
+    "name": "Manual Flathead Screwdriver",
+    "description": "Ergonomic handle, perfect for manual fastening jobs.",
+    "category": "Tools",
+    "tags": ["Manual", "Flat Head", "Screwdriver"]
+  },
+  {
+    "name": "TorqueMaster Electric Circular Saw",
+    "description": "Precision saw for cutting steel and wood with adjustable speed.",
+    "category": "Tools",
+    "tags": ["Power Tool", "Steel", "Wood", "TorqueMaster"]
+  },
+  {
+    "name": "Plastic Wire Connectors Set",
+    "description": "Pack of 50 plastic twist-on wire connectors for electrical jobs.",
+    "category": "Connectors",
+    "tags": ["Plastic", "Electrical Components"]
+  },
+  {
+    "name": "OSHA-Compliant Hard Hat",
+    "description": "Durable plastic hard hat with internal suspension system.",
+    "category": "Equipment",
+    "tags": ["Plastic", "OSHA-Compliant"]
+  },
+  {
+    "name": "120V Angle Grinder",
+    "description": "Compact 120-volt grinder for metalworking and carpentry.",
+    "category": "Tools",
+    "tags": ["120-Volt", "Power Tool"]
+  },
+  {
+    "name": "VoltEdge 240V Extension Cord",
+    "description": "Heavy-duty cord rated for high-load 240V equipment.",
+    "category": "Electrical Components",
+    "tags": ["240-Volt", "VoltEdge"]
+  },
+  {
+    "name": "SafeCore Earmuffs",
+    "description": "Noise-dampening earmuffs for loud work environments.",
+    "category": "Equipment",
+    "tags": ["OSHA-Compliant", "SafeCore"]
+  },
+  {
+    "name": "HammerSpan Steel Bolts (50ct)",
+    "description": "Threaded steel bolts designed for construction-grade use.",
+    "category": "Connectors",
+    "tags": ["Steel", "HammerSpan"]
+  },
+  {
+    "name": "TorqueMaster Cordless Screwdriver",
+    "description": "Small electric screwdriver ideal for household tasks.",
+    "category": "Tools",
+    "tags": ["Phillips Head", "Screwdriver", "Power Tool", "TorqueMaster"]
+  },
+  {
+    "name": "5m Wooden Support Beam",
+    "description": "Treated wood beam for framing and structure reinforcement.",
+    "category": "Materials",
+    "tags": ["Wood"]
+  },
+  {
+    "name": "Plastic Anchor Plugs",
+    "description": "Lightweight wall anchors for drywall and masonry.",
+    "category": "Connectors",
+    "tags": ["Plastic"]
+  },
+  {
+    "name": "PlyTek Laminated MDF Panel",
+    "description": "Medium-density fiberboard panel for cabinetry projects.",
+    "category": "Materials",
+    "tags": ["Wood", "PlyTek"]
+  },
+  {
+    "name": "Steel Pipe Conduit",
+    "description": "Galvanized steel pipe for electrical routing.",
+    "category": "Electrical Components",
+    "tags": ["Steel"]
+  },
+  {
+    "name": "Manual Ratchet Wrench",
+    "description": "Precision ratchet wrench for manual tightening.",
+    "category": "Tools",
+    "tags": ["Manual"]
+  },
+  {
+    "name": "High-Visibility Gloves",
+    "description": "Brightly colored gloves for improved on-site safety.",
+    "category": "Equipment",
+    "tags": ["High-Visibilty"]
+  },
+  {
+    "name": "SafeCore OSHA Helmet with Visor",
+    "description": "Integrated face protection and OSHA compliance.",
+    "category": "Equipment",
+    "tags": ["OSHA-Compliant", "SafeCore"]
+  }
+]

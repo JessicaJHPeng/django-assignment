@@ -50,6 +50,7 @@ def search(request):
         'products': products,
         'categories': categories,
         'tags': list(tags),
+        'selected_tags': selected_tags,
     })
 
 
@@ -65,7 +66,7 @@ def import_data(request):
             category, _ = Category.objects.get_or_create(name=category_name)
 
             # Create the product
-            product = Product.objects.create(
+            product, _ = Product.objects.get_or_create(
                 name=item['name'],
                 description=item['description'],
                 category=category

@@ -1,8 +1,7 @@
-from django.shortcuts import render, HttpResponse
-from .models import *
 import json
-from django.core import serializers
+from django.shortcuts import render
 from django.db.models import Q
+from .models import *
 
 # Simple test view to render the homepage
 def test(request):
@@ -23,7 +22,7 @@ def search(request):
     tag_query = request.GET.get('tags', '')          # Comma-separated list of tag names
     selected_tags = [t.strip() for t in tag_query.split(',') if t.strip()]  # Cleaned list
 
-    products = Product.objects.all()
+    products = Product.objects.all().select_related("category").prefetch_related("tags")
 
     # Filter by name or description using Q for OR logic
     if query:
@@ -41,7 +40,7 @@ def search(request):
         for tag_name in selected_tags:
             products = products.filter(tags__name=tag_name)
         products = products.distinct()  # Avoid duplicate products from joins
-
+        
     # Fetch all categories and tag names for the search form
     categories = Category.objects.all()
     tags = Tag.objects.values_list('name', flat=True)

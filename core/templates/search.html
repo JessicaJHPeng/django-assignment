@@ -176,7 +176,11 @@
 <ul>
   {% for product in products %}
     <li>
-      <strong>{{ product.name }}</strong> - {{ product.description }}
+      <strong>{{ product.name }}</strong> - {{ product.description }} 
+      <strong>Category:</strong> {{product.category}}, 
+      <strong>Tags:</strong> {% for tag in product.tags.all %}
+        {{tag}}, 
+      {%endfor%}
     </li>
   {% empty %}
     <li>No products found.</li>

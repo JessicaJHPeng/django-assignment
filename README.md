@@ -66,3 +66,9 @@ I did not use AI to generate any part of the code. I wrote all the code myself u
 - I have tested my database to handle non-ASCII characters such as the Ω symbol in the resistor sample product.
 - Right now, categories are set to cascade on delete, meaning if a category is deleted all of the products in that category will be too. In a real environment, there could also be another option of moving all products of a deleted category to a "Misc." category to avoid losing track of products that are still in stock.
 - I considered having categories and tags be in a many-to-many relationship to each other so that each tag can only apply to a subset of categories, thus narrowing down the tag search in a real environment with thousands of tags, but the more I thought about it the more restrictive it seemed. For example, right now the 120-V and 240-V tags only apply to Electrical Components and Tools, but what if an admin wanted to make a new Machines category or add the voltage tags to Equipment? If an admin wanted to make a new category, would they have to manually select every single tag that could possibly apply to the new category? Eventually I just decided to go with my original decision of having Categories and Tags not be directly related.
+
+## Changelog
+2025/06/16
+- Entered queries for description, category, and tags all persist after pressing the search button.
+- JSON import now removes duplicate products.
+- Clicking the header returns to the home page.
